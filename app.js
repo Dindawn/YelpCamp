@@ -16,10 +16,12 @@ var campgroundRoutes = require("./routes/campgrounds"),
 		commentRoutes    = require("./routes/comments"),
 		indexRoutes			 = require("./routes/index");
 
-// console.log(process.env.DATABASEURL);
-// mongoose.connect("mongodb://localhost/yelp_camp_v12"); // !!!! v12 DB !!!!!
-mongoose.connect(process.env.DATABASEURL); 
-// mongoose.connect("mongodb://aadb:azsxdc@ds223609.mlab.com:23609/yelpcamp1"); 
+// mongoose.connect("mongodb://localhost/yelp_camp_v12"); // !!!! v12 DB !!!!!  // Codeanywhere url
+// mongoose.connect("mongodb://aadb:azsxdc@ds223609.mlab.com:23609/yelpcamp1"); // Mlab url
+//var dburl = process.env.DATABASEURL || "mongodb://localhost/yelp_camp_v12"; --> mongoose.connect(dburl);
+mongoose.connect(process.env.DATABASEURL || "mongodb://localhost/yelp_camp_v12"); 									// Set defoult URL if variable 'DATABASEURL' is empty
+//console.log(process.env.DATABASEURL); 			// check the 'DATABASEURL' variable
+//mongoose.connect(process.env.DATABASEURL);  // possible after setting variable 'DATABASEURL' with export, on heroku set to Mlab url
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
@@ -58,5 +60,5 @@ app.get('*', function(req, res) {
 });
 
 app.listen(process.env.PORT || 3000, function() {
-  console.log('Server listening on port 3000');
+  console.log('Server is listening');
 });

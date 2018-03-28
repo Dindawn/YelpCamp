@@ -13,7 +13,7 @@ router.get('/', function(req, res) {
 //=================
 // register Form route
 router.get("/register", function(req, res){
-  res.render("register");
+  res.render("register", {page: 'register'});
 });
 
 // registers new user
@@ -35,7 +35,7 @@ router.post("/register", function(req, res){
 
 //login form
 router.get("/login", function(req, res){
-  res.render("login");
+  res.render("login", {page: 'login'});
 });
 
 // loges in
